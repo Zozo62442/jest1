@@ -1,5 +1,17 @@
-function buttonClick() {
-    document.getElementById("par").innerHTML = "You Clicked";
-}
+/**
+ * @jest-environment jsdom
+ */
 
-module.exports = buttonClick;
+const buttonClick = require("../button");
+
+beforeEach(() => {
+    document.body.innerHTML = "<p id='par'></p>";
+});
+
+describe("DOM tests", () => {
+    test("Expects content to change", () => {
+        buttonClick();
+        expect(document.getElementById("par")
+            .innerHTML).toEqual("You Clicked");
+    });
+});
